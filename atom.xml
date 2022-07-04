@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>caidd的博客</title>
   
-  
+  <subtitle>等待花开，等待你来</subtitle>
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2022-07-03T22:22:19.725Z</updated>
+  <updated>2022-07-04T13:39:52.807Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -17,23 +17,27 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://caidd.fun/hello-world/"/>
-    <id>http://caidd.fun/hello-world/</id>
-    <published>2022-07-03T22:22:19.725Z</published>
-    <updated>2022-07-03T22:22:19.725Z</updated>
+    <title>test</title>
+    <link href="http://caidd.fun/test/"/>
+    <id>http://caidd.fun/test/</id>
+    <published>2022-07-04T13:34:41.000Z</published>
+    <updated>2022-07-04T13:39:52.807Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;公式测试&quot;&gt;&lt;a href=&quot;#公式测试&quot; class=&quot;headerlink&quot; title=&quot;公式测试&quot;&gt;&lt;/a&gt;公式测试&lt;/h1&gt;&lt;p&gt;$O(n^2)$&lt;br&gt;$$&lt;br&gt;ans = \sum_{1}^n</summary>
         
       
     
     
     
+    <category term="测试" scheme="http://caidd.fun/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="测试" scheme="http://caidd.fun/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
