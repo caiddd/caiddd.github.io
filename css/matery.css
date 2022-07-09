@@ -1997,6 +1997,7 @@ p.search-result-summary{
     /* place for '...' */
     margin-right: -1em;
     padding-right: 1em;
+    display: none
 }
 
 /* create the ... style */

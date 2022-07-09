@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2022-07-04T20:50:51.961Z</updated>
+  <updated>2022-07-09T13:56:34.134Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -17,11 +17,65 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>hexo公式渲染问题</title>
+    <link href="http://caidd.fun/hexo-gong-shi-xuan-ran-wen-ti/"/>
+    <id>http://caidd.fun/hexo-gong-shi-xuan-ran-wen-ti/</id>
+    <published>2022-07-09T13:45:10.000Z</published>
+    <updated>2022-07-09T13:56:34.134Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;不能渲染的公式&quot;&gt;&lt;a href=&quot;#不能渲染的公式&quot; class=&quot;headerlink&quot; title=&quot;不能渲染的公式&quot;&gt;&lt;/a&gt;不能渲染的公式&lt;/h2&gt;&lt;p&gt;hexo下自带的markdown不能渲染如下公式&lt;/p&gt;
+&lt;pre</summary>
+        
+      
+    
+    
+    
+    <category term="博客问题" scheme="http://caidd.fun/categories/%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98/"/>
+    
+    
+    <category term="markdown" scheme="http://caidd.fun/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2022CCPC江苏省赛</title>
+    <link href="http://caidd.fun/2022ccpc-jiang-su-sheng-sai/"/>
+    <id>http://caidd.fun/2022ccpc-jiang-su-sheng-sai/</id>
+    <published>2022-07-04T21:43:05.000Z</published>
+    <updated>2022-07-09T13:58:12.384Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;只记录写了的题&lt;/p&gt;
+&lt;h2 id=&quot;A-PENTA-KILL&quot;&gt;&lt;a href=&quot;#A-PENTA-KILL&quot; class=&quot;headerlink&quot; title=&quot;A  PENTA KILL!&quot;&gt;&lt;/a&gt;A  &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="程序设计竞赛" scheme="http://caidd.fun/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/"/>
+    
+    
+    <category term="CCPC" scheme="http://caidd.fun/tags/CCPC/"/>
+    
+    <category term="各省省赛" scheme="http://caidd.fun/tags/%E5%90%84%E7%9C%81%E7%9C%81%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>test</title>
     <link href="http://caidd.fun/test/"/>
     <id>http://caidd.fun/test/</id>
     <published>2022-07-04T13:34:41.000Z</published>
-    <updated>2022-07-04T20:50:51.961Z</updated>
+    <updated>2022-07-09T13:56:49.869Z</updated>
     
     
       
@@ -34,7 +88,7 @@
     
     
     
-    <category term="测试" scheme="http://caidd.fun/categories/%E6%B5%8B%E8%AF%95/"/>
+    <category term="博客问题" scheme="http://caidd.fun/categories/%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98/"/>
     
     
     <category term="测试" scheme="http://caidd.fun/tags/%E6%B5%8B%E8%AF%95/"/>
