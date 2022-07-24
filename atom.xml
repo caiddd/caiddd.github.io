@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2022-07-11T04:05:57.286Z</updated>
+  <updated>2022-07-24T10:48:17.659Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cpp常数优化技巧</title>
+    <link href="http://caidd.fun/cpp-chang-shu-you-hua-ji-qiao/"/>
+    <id>http://caidd.fun/cpp-chang-shu-you-hua-ji-qiao/</id>
+    <published>2022-07-24T09:40:34.000Z</published>
+    <updated>2022-07-24T10:48:17.659Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;下面这三行代码加到C++的开头，有些情况可以对代码运行速度有显著的提升&lt;br&gt;一般来说，代码结构越简单，这三行代码优化得越多&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-cpp&quot; data-language=&quot;cpp&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="C++" scheme="http://caidd.fun/categories/C/"/>
+    
+    
+    <category term="语言问题" scheme="http://caidd.fun/tags/%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>料理制作</title>

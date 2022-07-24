@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Cpp常数优化技巧</title>
+      <link href="/cpp-chang-shu-you-hua-ji-qiao/"/>
+      <url>/cpp-chang-shu-you-hua-ji-qiao/</url>
+      
+        <content type="html"><![CDATA[<p>下面这三行代码加到C++的开头，有些情况可以对代码运行速度有显著的提升<br>一般来说，代码结构越简单，这三行代码优化得越多</p><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">GCC <span class="token function">target</span> <span class="token punctuation">(</span></span><span class="token string">"avx2"</span><span class="token expression"><span class="token punctuation">)</span></span></span><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">GCC <span class="token function">optimization</span> <span class="token punctuation">(</span></span><span class="token string">"O3"</span><span class="token expression"><span class="token punctuation">)</span></span></span><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">GCC <span class="token function">optimization</span> <span class="token punctuation">(</span></span><span class="token string">"unroll-loops"</span><span class="token expression"><span class="token punctuation">)</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 语言问题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>料理制作</title>
       <link href="/liao-li-zhi-zuo/"/>
       <url>/liao-li-zhi-zuo/</url>
