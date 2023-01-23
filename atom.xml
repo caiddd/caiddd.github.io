@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2022-10-08T08:27:24.228Z</updated>
+  <updated>2023-01-23T12:43:18.623Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux系统编程入门</title>
+    <link href="http://caidd.fun/linux-xi-tong-bian-cheng-ru-men/"/>
+    <id>http://caidd.fun/linux-xi-tong-bian-cheng-ru-men/</id>
+    <published>2023-01-23T12:38:50.000Z</published>
+    <updated>2023-01-23T12:43:18.623Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;简易环境搭建&quot;&gt;&lt;a href=&quot;#简易环境搭建&quot; class=&quot;headerlink&quot; title=&quot;简易环境搭建&quot;&gt;&lt;/a&gt;简易环境搭建&lt;/h1&gt;&lt;p&gt;本地&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;下载 vmware&lt;/li&gt;
+&lt;li&gt;从官网下载 20.04LTS</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="http://caidd.fun/categories/Linux/"/>
+    
+    
+    <category term="linux" scheme="http://caidd.fun/tags/linux/"/>
+    
+    <category term="C++" scheme="http://caidd.fun/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>Cpp浮点数问题</title>

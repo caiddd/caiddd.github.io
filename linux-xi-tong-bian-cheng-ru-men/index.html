@@ -5,10 +5,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="code-kWlHsnnCXi" />
-    <meta name="keywords" content="Cpp浮点数问题, 算法 数据科学 人工智能 程序设计竞赛 数学建模">
-    <meta name="description" content="今天下午遇到这样一道题，被卡了精度，联想起以前比赛时被卡精度的题，以及计算计组成原理的IEEE浮点数标准。故在此进行总结
-数据类型
-在不同的计算机，不同的编译器中，常用的 int, double, long long 类型存储大小基本不变，">
+    <meta name="keywords" content="linux系统编程入门, 算法 数据科学 人工智能 程序设计竞赛 数学建模">
+    <meta name="description" content="简易环境搭建本地
+
+下载 vmware
+从官网下载 20.04LTS 镜像（长期维护版），安装虚拟机，100G空间，4G内存，2核（本地 win11，1T，16G，4核）
+下载 ssh，复制 id_rsa.pub 公钥文件
+
+虚拟机
+
+安装">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -31,7 +37,7 @@
     </style>
 
 
-    <title>Cpp浮点数问题 | caidd的博客</title>
+    <title>linux系统编程入门 | caidd的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -302,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Cpp浮点数问题</h1>
+                    <h1 class="description center-align post-title">linux系统编程入门</h1>
                 </div>
             </div>
         </div>
@@ -423,8 +429,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98/">
-                                <span class="chip bg-color">语言问题</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
                     </div>
@@ -435,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/C/" class="post-category">
-                                C++
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -448,14 +458,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-10-08
+                    2023-01-23
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-10-08
+                    2023-01-23
                 </div>
                 
 
@@ -487,61 +497,213 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今天下午遇到这样<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1737/problem/B">一道题</a>，被卡了精度，联想起以前比赛时被卡精度的题，以及计算计组成原理的IEEE浮点数标准。故在此进行总结</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="https://raw.githubusercontent.com/caiddd/picture/main/32-64.jpg"></p>
-<p>在不同的计算机，不同的编译器中，常用的 <code>int</code>, <code>double</code>, <code>long long</code> 类型存储大小基本不变，但是 <code>long double</code> 变化却很多，可偏偏这种数据类型在卡精度时又很常用，所以有必要好好分析一下。</p>
-<p>在C的标准中，仅规定 <code>long double</code> 的精度范围大于等于 <code>double</code></p>
-<p>在 msvc（即VS使用的编译器）中， <code>long double</code> 等同于 <code>double</code> ，都是8个字节</p>
-<blockquote>
-<p>  The<code>long double</code> type is identical to the double type.</p>
-</blockquote>
-<p>而在 gcc 中两者是不同的</p>
-<p>32位下<code>long double</code> 是12个字节, 64位下是16个字节.</p>
-<p><img src="https://raw.githubusercontent.com/caiddd/picture/main/20221008150707.png"></p>
-<p>现今竞赛环境多为64位机 G++/GCC，即 <code>long double</code> 占用了16个字节，128位。</p>
-<p>然而实际编译时，由于x86架构上 fpu 的存在，大部分编译器将 <code>long double</code> 编译成80位的浮点数，用科学计数法的话，其尾数部分是64位。剩下的部分主要用于内存对齐，防止存取的麻烦以及内存空间碎片化。</p>
-<p>也就是说，尾数部分刚好存得下一个 <code>long long</code> ，不会损失精度。</p>
-<p>然而，<code>double</code> 尾数部分就没有那么大了</p>
-<p><img src="https://raw.githubusercontent.com/caiddd/picture/main/20221008152931.png"></p>
-<p>所以 <code>long long</code> 在转为 <code>double</code> 时会损失不少精度</p>
-<h2 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h2><p>想起以前很多时候，觉得一个库函数好用就天天拿来玩，却没有去想其功能与使用范围。导致埋下了不少坑。</p>
-<h3 id="sqrt"><a href="#sqrt" class="headerlink" title="sqrt"></a>sqrt</h3><p>就我个人而言，最易出问题的当数 <code>sqrt</code> 函数</p>
-<p>很多人都知道这个函数是求一个数的根，但是却没有去看其返回类型以及传入类型</p>
-<p>查看cmath库的定义源码</p>
-<p><img src="https://raw.githubusercontent.com/caiddd/picture/main/20221008154023.png"></p>
-<p>可见除 <code>float</code>，<code>long double</code>类型外，其余均返回 <code>double</code></p>
-<p>其中</p>
-<p><img src="https://raw.githubusercontent.com/caiddd/picture/main/20221008155005.png"></p>
-<p><code>float</code> 另调用 <code>math.h</code> 的 <code>sqrtf</code> 函数</p>
-<p><code>long double</code> 另调用 <code>math.h</code> 的 <code>sqrtl</code> 函数</p>
-<p>其他类型则调用 <code>math.h</code> 的 <code>sqrt</code> 函数</p>
-<p>该函数在C库仅有如下声明</p>
-<p><img src="https://raw.githubusercontent.com/caiddd/picture/main/20221008155245.png"></p>
-<p>故整型均会强转为 <code>double</code> 进行运算，<code>long long</code> 便是在此处传入时损失了精度。若想不损失精度，要么传入的时候强转为<code>long double</code> ，要么调用C库的 <code>sqrtl</code> 函数。</p>
-<h3 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h3><p>后续又对许多数学库函数进行了观察，发现很多库函数都对 <code>float</code> ,<code>long double</code> 进行了单独处理，对于 <code>float</code> 函数名基本都为常见的那个后面加个<code>f</code>，对于 <code>float</code> 函数名基本都为常见的那个后面加个<code>l</code>。数学库的函数大部分都是返回 <code>double</code> 型，而非整型。初学者往往会将 <code>pow</code>，<code>ceil</code> 误当作返回整型的函数，一定要注意精度的损失。</p>
-<p>顺带一提，这些数学库函数的复杂度基本都是可以当作 $O(1)$ 的，只是常数比较大，其底层有用到类似牛顿迭代法一类的数学加速方法。</p>
-<h2 id="算法上避免精度误差"><a href="#算法上避免精度误差" class="headerlink" title="算法上避免精度误差"></a>算法上避免精度误差</h2><p>避免除法取根号等运算，不仅可以在精度上提升，还可以提快速度。我曾经就有因为除法而在一道题上超时。</p>
-<p>替换方法举例：</p>
-<p>如将</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h1 id="简易环境搭建"><a href="#简易环境搭建" class="headerlink" title="简易环境搭建"></a>简易环境搭建</h1><p>本地</p>
+<ul>
+<li>下载 vmware</li>
+<li>从官网下载 20.04LTS 镜像（长期维护版），安装虚拟机，100G空间，4G内存，2核（本地 win11，1T，16G，4核）</li>
+<li>下载 ssh，复制 id_rsa.pub 公钥文件</li>
+</ul>
+<p>虚拟机</p>
+<ul>
+<li>安装 gcc，g++，ssh，gdb，make，<code>sudo apt install gcc g++ ssh gdb make</code></li>
+<li>创建 ssh 公私钥，<code>ssh-keygen</code></li>
+<li>复制之前的公钥到 authorized_keys文件，若没有则创建该文件</li>
+<li>ifconfig 查看 ip 地址</li>
+</ul>
+<p>本地</p>
+<ul>
+<li>下载vscode，在remote管理设置里，以之前 ip 地址创建远程连接</li>
+<li>登录虚拟机</li>
+<li>下载 C++ 全家桶插件，中文插件，文件显示美化插件</li>
+</ul>
+<h1 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h1><p>编译 C 文件，尽量使用 gcc 命令，编译 C++ 文件，尽量使用 g++</p>
+<p>gcc 不能自动和 C++ 使用的库链接，g++ 统一当作 C++ 编译，语法检查更严，故尽量用对应命令编译</p>
+<table>
+<thead>
+<tr>
+<th>gcc编译选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-E</td>
+<td>预处理指定的源文件，不进行编译</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>编译指定的源文件,但是不进行汇编</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>编译、汇编指定的源文件，但是不进行链接</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>-o file1 file2 或 file2 -o file1 将文件 file2 编译成可执行文件 file1</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>指定include包含文件的搜索目录</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>在编译的时候，生成调试信息，该程序可以被调试器调试</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>在程序编译的时候，指定一个宏</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>不生成任何警告信息</td>
+</tr>
+<tr>
+<td>-Wall</td>
+<td>生成所有警告信息</td>
+</tr>
+<tr>
+<td>-On</td>
+<td>n的取值范围:0~3。编译器的优化选项的4个级别,-o0表示没有优化，-o1为缺省值，-o3优化级别最高</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>在程序编译的时候，指定使用的库</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>指定编译的时候，搜索的库的路径</td>
+</tr>
+<tr>
+<td>-fPIC/-fpic</td>
+<td>生成与位置无关的代码</td>
+</tr>
+<tr>
+<td>-shared</td>
+<td>生成共享目标文件,通常用在建立共享库时</td>
+</tr>
+<tr>
+<td>-std</td>
+<td>指定c方言，如:-std=c99,gcc默认的方言是GNU c</td>
+</tr>
+</tbody></table>
+<h1 id="库"><a href="#库" class="headerlink" title="库"></a>库</h1><p>静态库：GCC 进行链接时，会把静态库中代码打包到可执行程序中</p>
+<p>动态库：GCC 进行链接时，动态库的代码不会被打包到可执行程序中</p>
+<h2 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h2><h3 id="制作"><a href="#制作" class="headerlink" title="制作"></a>制作</h3><p><code>ar rcs libxxx.a ...</code> 使用 .o 文件创建一个名为xxx的静态库</p>
+<p>r —— 将文件插入备存文件中<br>c —— 建立备存文件<br>s —— 索引</p>
+<p>扩展名在 linux 下是 .a ，windows 下 .lib</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230123154729.png"></p>
+<p>对于该示例，可以使用命令 <code>gcc main.c -o app -I ./include/ -l calc -L ./lib</code> 来将静态库编译进来</p>
+<p>表示在 <code>./include</code> 目录下搜寻头文件，链接名为 <code>calc</code> 的库，在 <code>./lib</code> 下搜寻库</p>
+<h2 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h2><p>程序启动之后，动态库会被动态加载到内存中，通过ldd (list dynamicdependencies）命令检查动态库依赖关系</p>
+<p><strong>动态库的定位</strong>（linux系统）：</p>
+<p>对于elf格式的可执行文件，由 ld-linux.so 完成链接，路径为</p>
+<p><strong>DT_RPATH段 -&gt; 环境变量 LD_LIBRARY_PATH -&gt; /etc/ld.so.cache 文件列表 -&gt; /lib/，/usr/lib</strong></p>
+<p><strong>环境变量</strong>：</p>
+<p>全局在 <strong>/etc/profile</strong> 修改，用户在 <strong>~/.bashrc</strong>，用户与全局相同的环境变量会覆盖</p>
+<p>一个变量可以对应多个值，多个值以 ：隔开，寻找时依次寻找</p>
+<p>创建环境变量可用在上述两个文件中写export命令，并source使之生效，比如 <code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:绝对路径</code></p>
+<p>不用export定义的变量只对该shell有效，对子shell也是无效的</p>
+<p>如果只在某个终端写export命令，则环境变量是临时的</p>
+<h3 id="制作-1"><a href="#制作-1" class="headerlink" title="制作"></a>制作</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -c -fpic/fPIC a.c b.c
+gcc -shared a.o b.o -o libcalc.so<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>替换为</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">*</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>-fpic/fPIC 生成位置无关的文件</p>
+<p>-shared 生成共享库，以动态链接</p>
+<p>如果链接的可执行文件的GOT大小超过计算机特定的最大大小，则会从链接器收到错误消息，指示-fpic不起作用。在这种情况下，请使用-fPIC重新编译。GOT大小根据操作系统的不同而大小不一样。因此尽量使用-fPIC编译</p>
+<p>扩展名在 linux 下是 .a ，windows 下 .dll</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230123194629.png"></p>
+<p>示例：</p>
+<p><code>gcc main.c -o main -I include/ -L lib/ -l calc</code></p>
+<p>而后由之前所说有三种方法：</p>
+<p>第一种：</p>
+<p>然后在之前说的两个文件夹添加环境变量地址即可，并使用source使之生效</p>
+<p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/caidd/linux/test/lib</code></p>
+<p>该命令表示，保持原始环境变量的内容，在其后添加一个变量，即库文件夹位置</p>
+<p>第二种：</p>
+<p>修改 /etc/ld.so.conf 文件，直接将目标库的文件夹绝对位置复制到最后即可</p>
+<p>然后使用 sudo ldconfig 使之生效</p>
+<p>第三种：</p>
+<p>将库放到 /lib/，/usr/lib 里面，便会自动找到，但由于会引起命名冲突，所以不推荐</p>
+<h2 id="静态库与动态库对比"><a href="#静态库与动态库对比" class="headerlink" title="静态库与动态库对比"></a>静态库与动态库对比</h2><p>静态库：</p>
+<p>优点</p>
+<ul>
+<li>静态库被打包到应用程序中加载速度快</li>
+<li>发布程序无需提供静态库，移植方便</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>消耗系统资源,浪费内存</li>
+<li>更新、部暑、发布麻烦</li>
+</ul>
+<p>动态库：</p>
+<p>优点</p>
+<ul>
+<li>可以实现进程间资源共享(共享库)更新、部署、发布简单</li>
+<li>可以控制何时加载动态库</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>加载速度比静态库慢</li>
+<li>发布程序时需要提供依赖的动态库</li>
+</ul>
+<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p><a target="_blank" rel="noopener" href="https://seisman.github.io/how-to-write-makefile/index.html">自己学</a>，后续会接触到的cmake，xmake，主要用于生成 makefile 文件。这些东西都是用于处理大型项目的依赖关系。</p>
+<p>Makefile 不仅使得项目编译更为轻松，还能使编译速度更快，其会自动比对文件的修改时间，只有当目标文件不存在或依赖文件的更新时间晚于目标文件才会进行更新。</p>
+<h1 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h1><p>生成可调试执行程序，gcc，g++ 需要加上 -g 参数，才能在原始程序添加符号表，使得 gdb 能够进行调试</p>
+<p><strong>启动和退出</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdb 可执行程序名字
+quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>将</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">p2</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> x <span class="token operator">*</span> x<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">double</span> <span class="token function">dis</span><span class="token punctuation">(</span><span class="token keyword">int</span> ax<span class="token punctuation">,</span> <span class="token keyword">int</span> ay<span class="token punctuation">,</span> <span class="token keyword">int</span> bx<span class="token punctuation">,</span> <span class="token keyword">int</span> by<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">p2</span><span class="token punctuation">(</span>ax <span class="token operator">-</span> ay<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">p2</span><span class="token punctuation">(</span>bx <span class="token operator">-</span> by<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>给程序设置参数/获取设置参数</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> args <span class="token number">10</span> <span class="token number">20</span>
+show args<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>替换为</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">dis</span><span class="token punctuation">(</span><span class="token keyword">int</span> ax<span class="token punctuation">,</span> <span class="token keyword">int</span> ay<span class="token punctuation">,</span> <span class="token keyword">int</span> bx<span class="token punctuation">,</span> <span class="token keyword">int</span> by<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token function">p2</span><span class="token punctuation">(</span>ax <span class="token operator">-</span> ay<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">p2</span><span class="token punctuation">(</span>bx <span class="token operator">-</span> by<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>并直接使用整数比较距离远近，只在结果输出时对其进行特殊处理。</p>
+<p><strong>GDB使用帮助</strong></p>
+<p>help</p>
+<p><strong>查看当前文件代码</strong></p>
+<p>list/l （从默认位置显示）</p>
+<p>list/l 行号 （以指定行号为中心进行显示）</p>
+<p>list/l 函数名 （从指定的函数显示）</p>
+<p><strong>查看非当前文件代码</strong></p>
+<p>list/l 文件名:行号 </p>
+<p>list/l 文件名:函数名</p>
+<p><strong>设置与查看显示的行数</strong></p>
+<p>show list/listsize</p>
+<p>set list/listsize 行数</p>
+<p><strong>设置断点</strong></p>
+<p>b/break 行号</p>
+<p>b/break 函数名</p>
+<p>b/break 文件名:行号</p>
+<p>b/break 文件名:函数</p>
+<p><strong>查看断点</strong></p>
+<p>i/info b/break</p>
+<p><strong>删除断点</strong></p>
+<p>d/del/delete 断点编号</p>
+<p><strong>设置断点无效</strong></p>
+<p>dis/disable 断点编号</p>
+<p><strong>设置断点生效</strong></p>
+<p>ena/enable 断点编号</p>
+<p><strong>设置条件断点（一般用在循环的位置）</strong></p>
+<p>b/break 10 if i == 5</p>
+<p><strong>运行GDB程序</strong></p>
+<p>start（程序停在第一行）</p>
+<p>run（遇到断点才停）</p>
+<p><strong>继续运行，到下一个断点停</strong></p>
+<p>c/continue</p>
+<p><strong>向下执行一行代码（不会进入函数体）</strong></p>
+<p>n/next</p>
+<p><strong>变量操作</strong></p>
+<p>p/print  变量名（打印变量值）</p>
+<p>ptype 变量名（打印变量类型）</p>
+<p><strong>向下单步调试（遇到函数进入函数体）</strong></p>
+<p>s/step</p>
+<p>finish（跳出函数体）</p>
+<p><strong>自动变量操作</strong></p>
+<p>display num（自动打印指定变量的值）</p>
+<p>i/info display</p>
+<p>undisplay 编号</p>
+<p><strong>其他操作</strong></p>
+<p>set var 变量名 = 变量值</p>
+<p>untill （跳出循环，跳出循环的条件是循环内部没有断点，并且在循环语句内）</p>
 
                 
             </div>
@@ -568,7 +730,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://caidd.fun/cpp-fu-dian-shu-wen-ti/">http://caidd.fun/cpp-fu-dian-shu-wen-ti/</a>
+                    <a href="http://caidd.fun/linux-xi-tong-bian-cheng-ru-men/">http://caidd.fun/linux-xi-tong-bian-cheng-ru-men/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -606,8 +768,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98/">
-                                    <span class="chip bg-color">语言问题</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
+                                </a>
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
                                 </a>
                             
                         </div>
@@ -778,7 +944,7 @@
         repo: 'caiddd.github.io',
         owner: 'caiddd',
         admin: "caiddd",
-        id: '2022-10-08T14-02-37',
+        id: '2023-01-23T20-38-50',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -808,9 +974,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/linux-xi-tong-bian-cheng-ru-men/">
                     <div class="card-image">
@@ -828,9 +995,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -843,6 +1010,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -865,13 +1033,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/cpp-chang-shu-you-hua-ji-qiao/">
+                <a href="/cpp-fu-dian-shu-wen-ti/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Cpp常数优化技巧">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Cpp浮点数问题">
                         
-                        <span class="card-title">Cpp常数优化技巧</span>
+                        <span class="card-title">Cpp浮点数问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -882,7 +1050,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-08
                             </span>
                         <span class="publish-author">
                             
