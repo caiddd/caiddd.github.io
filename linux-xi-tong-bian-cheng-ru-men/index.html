@@ -497,7 +497,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简易环境搭建"><a href="#简易环境搭建" class="headerlink" title="简易环境搭建"></a>简易环境搭建</h1><p>本地</p>
+                <h2 id="简易环境搭建"><a href="#简易环境搭建" class="headerlink" title="简易环境搭建"></a>简易环境搭建</h2><p>本地</p>
 <ul>
 <li>下载 vmware</li>
 <li>从官网下载 20.04LTS 镜像（长期维护版），安装虚拟机，100G空间，4G内存，2核（本地 win11，1T，16G，4核）</li>
@@ -516,7 +516,7 @@
 <li>登录虚拟机</li>
 <li>下载 C++ 全家桶插件，中文插件，文件显示美化插件</li>
 </ul>
-<h1 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h1><p>编译 C 文件，尽量使用 gcc 命令，编译 C++ 文件，尽量使用 g++</p>
+<h2 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h2><p>编译 C 文件，尽量使用 gcc 命令，编译 C++ 文件，尽量使用 g++</p>
 <p>gcc 不能自动和 C++ 使用的库链接，g++ 统一当作 C++ 编译，语法检查更严，故尽量用对应命令编译</p>
 <table>
 <thead>
@@ -586,15 +586,15 @@
 <td>指定c方言，如:-std=c99,gcc默认的方言是GNU c</td>
 </tr>
 </tbody></table>
-<h1 id="库"><a href="#库" class="headerlink" title="库"></a>库</h1><p>静态库：GCC 进行链接时，会把静态库中代码打包到可执行程序中</p>
+<h2 id="库"><a href="#库" class="headerlink" title="库"></a>库</h2><p>静态库：GCC 进行链接时，会把静态库中代码打包到可执行程序中</p>
 <p>动态库：GCC 进行链接时，动态库的代码不会被打包到可执行程序中</p>
-<h2 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h2><h3 id="制作"><a href="#制作" class="headerlink" title="制作"></a>制作</h3><p><code>ar rcs libxxx.a ...</code> 使用 .o 文件创建一个名为xxx的静态库</p>
+<h3 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h3><h4 id="制作"><a href="#制作" class="headerlink" title="制作"></a>制作</h4><p><code>ar rcs libxxx.a ...</code> 使用 .o 文件创建一个名为xxx的静态库</p>
 <p>r —— 将文件插入备存文件中<br>c —— 建立备存文件<br>s —— 索引</p>
 <p>扩展名在 linux 下是 .a ，windows 下 .lib</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230123154729.png"></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230123154729.png"></p>
 <p>对于该示例，可以使用命令 <code>gcc main.c -o app -I ./include/ -l calc -L ./lib</code> 来将静态库编译进来</p>
 <p>表示在 <code>./include</code> 目录下搜寻头文件，链接名为 <code>calc</code> 的库，在 <code>./lib</code> 下搜寻库</p>
-<h2 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h2><p>程序启动之后，动态库会被动态加载到内存中，通过ldd (list dynamicdependencies）命令检查动态库依赖关系</p>
+<h3 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h3><p>程序启动之后，动态库会被动态加载到内存中，通过ldd (list dynamicdependencies）命令检查动态库依赖关系</p>
 <p><strong>动态库的定位</strong>（linux系统）：</p>
 <p>对于elf格式的可执行文件，由 ld-linux.so 完成链接，路径为</p>
 <p><strong>DT_RPATH段 -&gt; 环境变量 LD_LIBRARY_PATH -&gt; /etc/ld.so.cache 文件列表 -&gt; /lib/，/usr/lib</strong></p>
@@ -604,14 +604,14 @@
 <p>创建环境变量可用在上述两个文件中写export命令，并source使之生效，比如 <code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:绝对路径</code></p>
 <p>不用export定义的变量只对该shell有效，对子shell也是无效的</p>
 <p>如果只在某个终端写export命令，则环境变量是临时的</p>
-<h3 id="制作-1"><a href="#制作-1" class="headerlink" title="制作"></a>制作</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -c -fpic/fPIC a.c b.c
+<h4 id="制作-1"><a href="#制作-1" class="headerlink" title="制作"></a>制作</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -c -fpic/fPIC a.c b.c
 gcc -shared a.o b.o -o libcalc.so<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>-fpic/fPIC 生成位置无关的文件</p>
 <p>-shared 生成共享库，以动态链接</p>
 <p>如果链接的可执行文件的GOT大小超过计算机特定的最大大小，则会从链接器收到错误消息，指示-fpic不起作用。在这种情况下，请使用-fPIC重新编译。GOT大小根据操作系统的不同而大小不一样。因此尽量使用-fPIC编译</p>
 <p>扩展名在 linux 下是 .a ，windows 下 .dll</p>
-<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230123194629.png"></p>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230123194629.png"></p>
 <p>示例：</p>
 <p><code>gcc main.c -o main -I include/ -L lib/ -l calc</code></p>
 <p>而后由之前所说有三种方法：</p>
@@ -624,7 +624,7 @@ gcc -shared a.o b.o -o libcalc.so<span aria-hidden="true" class="line-numbers-ro
 <p>然后使用 sudo ldconfig 使之生效</p>
 <p>第三种：</p>
 <p>将库放到 /lib/，/usr/lib 里面，便会自动找到，但由于会引起命名冲突，所以不推荐</p>
-<h2 id="静态库与动态库对比"><a href="#静态库与动态库对比" class="headerlink" title="静态库与动态库对比"></a>静态库与动态库对比</h2><p>静态库：</p>
+<h3 id="静态库与动态库对比"><a href="#静态库与动态库对比" class="headerlink" title="静态库与动态库对比"></a>静态库与动态库对比</h3><p>静态库：</p>
 <p>优点</p>
 <ul>
 <li>静态库被打包到应用程序中加载速度快</li>
@@ -646,9 +646,9 @@ gcc -shared a.o b.o -o libcalc.so<span aria-hidden="true" class="line-numbers-ro
 <li>加载速度比静态库慢</li>
 <li>发布程序时需要提供依赖的动态库</li>
 </ul>
-<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p><a target="_blank" rel="noopener" href="https://seisman.github.io/how-to-write-makefile/index.html">自己学</a>，后续会接触到的cmake，xmake，主要用于生成 makefile 文件。这些东西都是用于处理大型项目的依赖关系。</p>
+<h2 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h2><p><a target="_blank" rel="noopener" href="https://seisman.github.io/how-to-write-makefile/index.html">自己学</a>，后续会接触到的cmake，xmake，主要用于生成 makefile 文件。这些东西都是用于处理大型项目的依赖关系。</p>
 <p>Makefile 不仅使得项目编译更为轻松，还能使编译速度更快，其会自动比对文件的修改时间，只有当目标文件不存在或依赖文件的更新时间晚于目标文件才会进行更新。</p>
-<h1 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h1><p>生成可调试执行程序，gcc，g++ 需要加上 -g 参数，才能在原始程序添加符号表，使得 gdb 能够进行调试</p>
+<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>生成可调试执行程序，gcc，g++ 需要加上 -g 参数，才能在原始程序添加符号表，使得 gdb 能够进行调试</p>
 <p><strong>启动和退出</strong></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdb 可执行程序名字
 quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
