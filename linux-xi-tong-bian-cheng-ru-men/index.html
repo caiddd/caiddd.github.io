@@ -465,7 +465,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-01-26
+                    2023-02-02
                 </div>
                 
 
@@ -649,14 +649,9 @@ gcc -shared a.o b.o -o libcalc.so<span aria-hidden="true" class="line-numbers-ro
 <h2 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h2><p><a target="_blank" rel="noopener" href="https://seisman.github.io/how-to-write-makefile/index.html">自己学</a>，后续会接触到的cmake，xmake，主要用于生成 makefile 文件。这些东西都是用于处理大型项目的依赖关系。</p>
 <p>Makefile 不仅使得项目编译更为轻松，还能使编译速度更快，其会自动比对文件的修改时间，只有当目标文件不存在或依赖文件的更新时间晚于目标文件才会进行更新。</p>
 <h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>生成可调试执行程序，gcc，g++ 需要加上 -g 参数，才能在原始程序添加符号表，使得 gdb 能够进行调试</p>
-<p><strong>启动和退出</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdb 可执行程序名字
-quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<p><strong>启动和退出</strong><br>gdb 可执行程序名字<br>quit 退出</p>
 <p><strong>给程序设置参数/获取设置参数</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> args <span class="token number">10</span> <span class="token number">20</span>
-show args<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
+<p>set args 10 20<br>show args</p>
 <p><strong>GDB使用帮助</strong></p>
 <p>help</p>
 <p><strong>查看当前文件代码</strong></p>
@@ -711,6 +706,7 @@ show args<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <p>info inferiors 查看调试的进程</p>
 <p>inferior id 切换当前调试的进程</p>
 <p>detach inferiors id 使进程脱离GDB调试</p>
+<p><strong>Core dump 分析</strong><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bodhitree/p/5850212.html">gdb core模式</a></p>
 
                 
             </div>
