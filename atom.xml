@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2023-03-10T09:08:23.577Z</updated>
+  <updated>2023-03-15T05:11:27.255Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux终端美化: zsh</title>
+    <link href="http://caidd.fun/linux-zhong-duan-mei-hua-zsh/"/>
+    <id>http://caidd.fun/linux-zhong-duan-mei-hua-zsh/</id>
+    <published>2023-03-15T04:52:47.000Z</published>
+    <updated>2023-03-15T05:11:27.255Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天学C++协程时，偶然发现视频里的终端很炫，非常符合我对科技的想象，稍微搜了下，找到了zsh&lt;/p&gt;
+&lt;h2 id=&quot;配置步骤&quot;&gt;&lt;a href=&quot;#配置步骤&quot; class=&quot;headerlink&quot; title=&quot;配置步骤&quot;&gt;&lt;/a&gt;配置步骤&lt;/h2&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>内存对齐</title>
