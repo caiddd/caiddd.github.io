@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2023-03-15T05:11:27.255Z</updated>
+  <updated>2023-03-15T06:17:49.189Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://caidd.fun/linux-zhong-duan-mei-hua-zsh/"/>
     <id>http://caidd.fun/linux-zhong-duan-mei-hua-zsh/</id>
     <published>2023-03-15T04:52:47.000Z</published>
-    <updated>2023-03-15T05:11:27.255Z</updated>
+    <updated>2023-03-15T06:17:49.189Z</updated>
     
     
       
@@ -35,6 +35,10 @@
     
     
     
+    <category term="linux" scheme="http://caidd.fun/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="http://caidd.fun/tags/linux/"/>
     
   </entry>
   
