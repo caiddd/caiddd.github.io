@@ -43,9 +43,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="caidd的博客" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="caidd的博客" type="application/atom+xml">
 </head>
 
 
@@ -454,7 +454,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-21
+                    2023-03-22
                 </div>
                 
 
@@ -532,7 +532,7 @@
 <p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230318213018.png"></p>
 <p>可见当 <code>_Sp_counted_base</code> 模板类型为 <code>_S_atomic</code>  时，引用计数的增加使用CAS（compare and swap）原语（一般是指<strong>由若干条指令组成的程序段，用来实现某个特定功能，在执行过程中不可被中断</strong>）。CAS大致是这样操作的，将预期值和内存地址的实际值比较，若不相等，则用内存地址的实际值替换预期值，并根据预期值重新计算修改值。当发现预期值和内存地址的实际值相等后，则用修改值替换内存地址实际值，此时CAS原语操作成功。而失败后重新尝试的过程被称为<strong>自旋</strong>。这是乐观锁的一种，其适用于临界区比较小、并发量比较低的情况。当临界区比较大、并发量比较高时，用互斥锁为更好的选择。</p>
 <p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230318213221.png"></p>
-<p><img src="C:\Users\caidd\AppData\Roaming\Typora\typora-user-images\image-20230318213242186.png" alt="image-20230318213242186"></p>
+<p><img src="https://caidd-1305545187.cos.ap-nanjing.myqcloud.com/20230321193134.png"></p>
 <p>而从上图可以看到，默认的模板类型便是  <code>_S_atomic</code> ，因此 shared_ptr 内部的引用计数是线程安全的。</p>
 <h4 id="循环引用问题"><a href="#循环引用问题" class="headerlink" title="循环引用问题"></a>循环引用问题</h4><p>但是，当两个类互相存有指向对方的shared_ptr时，析构时会导致引用计数均为1，双方的资源都无法释放。</p>
 <p>如下所示</p>
@@ -651,6 +651,34 @@ std<span class="token double-colon punctuation">::</span>weak_ptr<span class="to
 
 <p>输出：</p>
 <p>create class A<br>create class B<br>delete class A<br>delete class B</p>
+<h2 id="智能指针的创建"><a href="#智能指针的创建" class="headerlink" title="智能指针的创建"></a>智能指针的创建</h2><p>《Effective Modern C++》中的条款 21有写到：优先使用 std::make_unique 和 std::make_shared 而不是直接使用new，在上面的所有代码的示例中，我也都遵守了这一条款。那么，为什么要这样呢？</p>
+<h3 id="一、避免代码重复"><a href="#一、避免代码重复" class="headerlink" title="一、避免代码重复"></a>一、避免代码重复</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> a <span class="token operator">=</span> <span class="token generic-function"><span class="token function">make_unique</span><span class="token generic class-name"><span class="token operator">&lt;</span>VeryLongClass<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+unique_ptr<span class="token operator">&lt;</span>VeryLongClass<span class="token operator">&gt;</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token keyword">new</span> VeryLongClass<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>自行体会</p>
+<h3 id="二、保证异常安全"><a href="#二、保证异常安全" class="headerlink" title="二、保证异常安全"></a>二、保证异常安全</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> spw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>考虑上面的代码，如果有一个计算 <code>priority</code>的函数</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">computePriority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>那么，下面这段代码就有可能内存泄露</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">computePriority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>因为进入 <code>processWidget</code>  前，包含三步操作</p>
+<p>执行new Widget，执行computePriority，执行std::shared_ptr的构造函数</p>
+<p>但这三步顺序是不一定的，如果 <code>computePriority</code>  先执行，那么当其发生异常，就无事发生。</p>
+<p>但是如果执行顺序上面所列的顺序一样，那么当 <code>computePriority</code> 发生异常，那么new出来的Widget就会发生内存泄露，因为它永远不会存储在Step 3中产生的本应负责管理它 的 std::shared_ptr 中。</p>
+<p>而如果使用make_shared，如下</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_shared</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>computePriority<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>便不会有内存泄露的风险。在runtime的时候， std::make_shared 或者computePriority都有可能被第一次调用。如果是 std::make_shared 先被调用，被动态分配的Widget安全的存储在返回的 std::shared_ptr 中 (在computePriority被调用之前)。如果computePriority产生了异常， std::shared_ptr 的析构函数会负责把它所拥有的Widget回收。如果computePriority首先被调用并且产生出一个异常， std::make_shared 不会被调用，因此也不必担心动态分配的Widget会产生泄漏的问题。</p>
+<h3 id="三、提升效率"><a href="#三、提升效率" class="headerlink" title="三、提升效率"></a>三、提升效率</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">spw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>很明显的情况是代码只需一次内存分配，但实际上它执行了两次。每一个 std::shared_ptr，都指向了一个包含被指向对象的引用计数的控制块，控制块的分配工作在 std::shared_ptr 的构造函数内部完成。直接使用new，就需要一次为Widget分配内存，第二次 需要为控制块分配内存。</p>
+<p>如果使用的是 std::make_shared</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> spw <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">make_shared</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>一次分配足够了。这是因为std::make_shared分配了一整块空间，包含了Widget对象和控制块。这个优化减少了程序的静态大小，因为代码中只包含了一次分配调用，并且加快了代码 的执行速度，因为内存只被分配一次。此外，使用std::make_shared 避免了在控制块中额外添加的一些记录信息的需要，潜在的减少了程序所需的总内存消耗。</p>
 <h2 id="深入理解"><a href="#深入理解" class="headerlink" title="深入理解"></a>深入理解</h2><p>深入理解一样东西最好的办法，就是实现它。</p>
 <h3 id="unique-ptr-1"><a href="#unique-ptr-1" class="headerlink" title="unique_ptr"></a>unique_ptr</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
 <span class="token keyword">class</span> <span class="token class-name">unique_ptr</span> <span class="token punctuation">{</span>
@@ -825,7 +853,8 @@ c <span class="token operator">=</span> b<span class="token punctuation">;</span
 <p>参考：</p>
 <p>chatGPT</p>
 <p>cppreference</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/deG0GHRpz4Qgq4cLSiW6-g">C++ 共享指针四宗罪</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/deG0GHRpz4Qgq4cLSiW6-g">《C++ 共享指针四宗罪》</a></p>
+<p>《Effective Modern C++》</p>
 
                 
             </div>
