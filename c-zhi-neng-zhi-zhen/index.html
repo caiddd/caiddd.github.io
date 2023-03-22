@@ -674,11 +674,12 @@ unique_ptr<span class="token operator">&lt;</span>VeryLongClass<span class="toke
 <p>便不会有内存泄露的风险。在runtime的时候， std::make_shared 或者computePriority都有可能被第一次调用。如果是 std::make_shared 先被调用，被动态分配的Widget安全的存储在返回的 std::shared_ptr 中 (在computePriority被调用之前)。如果computePriority产生了异常， std::shared_ptr 的析构函数会负责把它所拥有的Widget回收。如果computePriority首先被调用并且产生出一个异常， std::make_shared 不会被调用，因此也不必担心动态分配的Widget会产生泄漏的问题。</p>
 <h3 id="三、提升效率"><a href="#三、提升效率" class="headerlink" title="三、提升效率"></a>三、提升效率</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">spw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>很明显的情况是代码只需一次内存分配，但实际上它执行了两次。每一个 std::shared_ptr，都指向了一个包含被指向对象的引用计数的控制块，控制块的分配工作在 std::shared_ptr 的构造函数内部完成。直接使用new，就需要一次为Widget分配内存，第二次 需要为控制块分配内存。</p>
+<p>很明显的情况是代码只需一次内存分配，但实际上它执行了两次。每一个 std::shared_ptr，都指向了一个包含被指向对象的引用计数的控制块，控制块的分配工作在 std::shared_ptr 的构造函数内部完成。直接使用new，就需要一次为Widget分配内存，第二次需要为控制块分配内存。</p>
 <p>如果使用的是 std::make_shared</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> spw <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">make_shared</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>一次分配足够了。这是因为std::make_shared分配了一整块空间，包含了Widget对象和控制块。这个优化减少了程序的静态大小，因为代码中只包含了一次分配调用，并且加快了代码 的执行速度，因为内存只被分配一次。此外，使用std::make_shared 避免了在控制块中额外添加的一些记录信息的需要，潜在的减少了程序所需的总内存消耗。</p>
+<p>一次分配足够了。这是因为std::make_shared分配了一整块空间，包含了Widget对象和控制块。这个优化减少了程序的静态大小，因为代码中只包含了一次分配调用，并且加快了代码的执行速度，因为内存只被分配一次。此外，使用std::make_shared 避免了在控制块中额外添加的一些记录信息的需要，潜在的减少了程序所需的总内存消耗。</p>
+<p>当然，make之类的函数也有一定的缺陷，比如不支持指定自定义的deleter。</p>
 <h2 id="深入理解"><a href="#深入理解" class="headerlink" title="深入理解"></a>深入理解</h2><p>深入理解一样东西最好的办法，就是实现它。</p>
 <h3 id="unique-ptr-1"><a href="#unique-ptr-1" class="headerlink" title="unique_ptr"></a>unique_ptr</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
 <span class="token keyword">class</span> <span class="token class-name">unique_ptr</span> <span class="token punctuation">{</span>
