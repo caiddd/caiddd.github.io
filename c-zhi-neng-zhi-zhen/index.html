@@ -676,7 +676,7 @@ unique_ptr<span class="token operator">&lt;</span>VeryLongClass<span class="toke
 
 <p>很明显的情况是代码只需一次内存分配，但实际上它执行了两次。每一个 std::shared_ptr，都指向了一个包含被指向对象的引用计数的控制块，控制块的分配工作在 std::shared_ptr 的构造函数内部完成。直接使用new，就需要一次为Widget分配内存，第二次需要为控制块分配内存。</p>
 <p>如果使用的是 std::make_shared</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> spw <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">make_shared</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> spw <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_shared</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>一次分配足够了。这是因为std::make_shared分配了一整块空间，包含了Widget对象和控制块。这个优化减少了程序的静态大小，因为代码中只包含了一次分配调用，并且加快了代码的执行速度，因为内存只被分配一次。此外，使用std::make_shared 避免了在控制块中额外添加的一些记录信息的需要，潜在的减少了程序所需的总内存消耗。</p>
 <p>当然，make之类的函数也有一定的缺陷，比如不支持指定自定义的deleter。</p>
