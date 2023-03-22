@@ -6,14 +6,16 @@
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="code-kWlHsnnCXi" />
     <meta name="keywords" content="内存对齐, 算法 数据科学 人工智能 程序设计竞赛 数学建模">
-    <meta name="description" content="注：此文参考chatGPT回答
-引入举个简单的例子：（环境：64位Windows 11，GCC，C++20，O3优化）
+    <meta name="description" content="引入举个简单的例子：（环境：64位Windows 11，GCC，C++20，O3优化）
 #include &amp;lt;iostream&amp;gt;
 
 struct A1 {
   char a;
   int b;
-  ">
+  char c;
+};
+
+stru">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -460,7 +462,7 @@ struct A1 {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-10
+                    2023-03-22
                 </div>
                 
 
@@ -492,8 +494,7 @@ struct A1 {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>注：此文参考chatGPT回答</strong></p>
-<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>举个简单的例子：（环境：64位Windows 11，GCC，C++20，O3优化）</p>
+                <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>举个简单的例子：（环境：64位Windows 11，GCC，C++20，O3优化）</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
 <span class="token keyword">struct</span> <span class="token class-name">A1</span> <span class="token punctuation">{</span>
@@ -658,6 +659,7 @@ struct A1 {
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在例子中，X的类型对齐字节长度为8字节，而X2在使用了alignas(16)之后，对齐字节长度修改为了16字节。<br>另外， 如果修改结构体成员的对齐字节长度，那么结构体本身的对齐字节长度也会发生变化，因为结构体类型的对齐字节长度总是需要大于或者等于其成员变量类型的对齐字节长度。<br>比如X1的成员变量a1类型的对齐字节长度修改为了16字节，所有X1类型也被修改为16字节对齐。<br>同样的规则也适用于结构体X3，X3类型的对齐字节长度被指定为16字节，虽然其成员变量a1的类型对齐字节长度被指定为8字节，但是并不能改变X3类型的对齐字节长度。<br>最后要说明的是，结构体类型的对齐字节长度，并不能影响声明变量时变量的对齐字节长度，比如x4。<br>不过在变量声明时指定对齐字节长度，也不影响变量内部成员变量类型的对齐字节长度，比如x4.a1。上面的代码用结构体作为例子，实际上对于类也是一样的。</p>
+<p>参考：<br>chatGPT</p>
 
                 
             </div>

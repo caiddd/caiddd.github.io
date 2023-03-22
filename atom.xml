@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2023-03-22T02:03:57.270Z</updated>
+  <updated>2023-03-22T02:04:41.913Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://caidd.fun/c-zhi-neng-zhi-zhen/"/>
     <id>http://caidd.fun/c-zhi-neng-zhi-zhen/</id>
     <published>2023-03-18T07:22:55.000Z</published>
-    <updated>2023-03-22T02:03:57.270Z</updated>
+    <updated>2023-03-22T02:04:41.913Z</updated>
     
     
       
@@ -73,15 +73,15 @@
     <link href="http://caidd.fun/nei-cun-dui-qi/"/>
     <id>http://caidd.fun/nei-cun-dui-qi/</id>
     <published>2023-03-10T06:20:15.000Z</published>
-    <updated>2023-03-10T09:08:23.577Z</updated>
+    <updated>2023-03-22T08:14:44.172Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;strong&gt;注：此文参考chatGPT回答&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h2&gt;&lt;p&gt;举个简单的例子：（环境：64位Windows</summary>
+    <summary type="html">&lt;h2 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h2&gt;&lt;p&gt;举个简单的例子：（环境：64位Windows 11，GCC，C++20，O3优化）&lt;/p&gt;
+&lt;pre</summary>
         
       
     
@@ -125,11 +125,11 @@
   </entry>
   
   <entry>
-    <title>Cpp浮点数问题</title>
+    <title>C++浮点数问题</title>
     <link href="http://caidd.fun/cpp-fu-dian-shu-wen-ti/"/>
     <id>http://caidd.fun/cpp-fu-dian-shu-wen-ti/</id>
     <published>2022-10-08T06:02:37.000Z</published>
-    <updated>2022-10-08T08:27:24.228Z</updated>
+    <updated>2023-03-22T08:14:03.542Z</updated>
     
     
       
@@ -151,11 +151,11 @@
   </entry>
   
   <entry>
-    <title>Cpp常数优化技巧</title>
+    <title>C++常数优化技巧</title>
     <link href="http://caidd.fun/cpp-chang-shu-you-hua-ji-qiao/"/>
     <id>http://caidd.fun/cpp-chang-shu-you-hua-ji-qiao/</id>
     <published>2022-07-24T09:40:34.000Z</published>
-    <updated>2022-10-08T06:01:57.181Z</updated>
+    <updated>2023-03-22T08:14:06.674Z</updated>
     
     
       
