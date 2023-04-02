@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2023-04-01T08:21:53.878Z</updated>
+  <updated>2023-04-02T08:00:15.545Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>力扣趣题集</title>
+    <link href="http://caidd.fun/li-kou-qu-ti-ji/"/>
+    <id>http://caidd.fun/li-kou-qu-ti-ji/</id>
+    <published>2023-04-02T06:32:13.000Z</published>
+    <updated>2023-04-02T08:00:15.545Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本文长期更新，记录力扣碰到的一些趣题&lt;br&gt;&lt;a href=&quot;https://leetcode.cn/u/cutecaidd/&quot;&gt;我的力扣主页&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;动态规划&quot;&gt;&lt;a href=&quot;#动态规划&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="程序设计竞赛" scheme="http://caidd.fun/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/"/>
+    
+    
+    <category term="算法题" scheme="http://caidd.fun/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+    <category term="力扣" scheme="http://caidd.fun/tags/%E5%8A%9B%E6%89%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>inet_ntoa与线程安全</title>
@@ -261,7 +289,7 @@
     <link href="http://caidd.fun/2022ccpc-jiang-su-sheng-sai/"/>
     <id>http://caidd.fun/2022ccpc-jiang-su-sheng-sai/</id>
     <published>2022-07-04T21:43:05.000Z</published>
-    <updated>2022-07-09T14:05:46.010Z</updated>
+    <updated>2023-04-02T06:33:34.229Z</updated>
     
     
       
@@ -280,7 +308,7 @@
     
     <category term="CCPC" scheme="http://caidd.fun/tags/CCPC/"/>
     
-    <category term="各省省赛" scheme="http://caidd.fun/tags/%E5%90%84%E7%9C%81%E7%9C%81%E8%B5%9B/"/>
+    <category term="算法题" scheme="http://caidd.fun/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
     
   </entry>
   
