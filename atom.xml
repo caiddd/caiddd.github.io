@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2023-04-02T08:00:15.545Z</updated>
+  <updated>2023-04-04T07:45:01.109Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>春招总结与反思</title>
+    <link href="http://caidd.fun/chun-zhao-zong-jie-yu-fan-si/"/>
+    <id>http://caidd.fun/chun-zhao-zong-jie-yu-fan-si/</id>
+    <published>2023-04-04T05:21:53.000Z</published>
+    <updated>2023-04-04T07:45:01.109Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今年春招真的不是一般的难受，各种双9（本硕均985）大佬也是各种简历挂，一面挂，啥ACM金牌银牌大佬，本科发操作系统顶会SCI的大佬，在今年也很难找到大厂的实习，如果能找到一个基本马上就签了。&lt;/p&gt;
+&lt;p&gt;注：写这篇博客时心情不是很好，如果冒犯了你，不是故意的。&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="生活" scheme="http://caidd.fun/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="工作" scheme="http://caidd.fun/tags/%E5%B7%A5%E4%BD%9C/"/>
+    
+    <category term="考研" scheme="http://caidd.fun/tags/%E8%80%83%E7%A0%94/"/>
+    
+  </entry>
   
   <entry>
     <title>力扣趣题集</title>
