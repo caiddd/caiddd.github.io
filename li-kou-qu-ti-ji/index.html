@@ -496,7 +496,7 @@
                 <p>本文长期更新，记录力扣碰到的一些趣题<br><a target="_blank" rel="noopener" href="https://leetcode.cn/u/cutecaidd/">我的力扣主页</a></p>
 <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="多边形三角剖分的最低得分"><a href="#多边形三角剖分的最低得分" class="headerlink" title="多边形三角剖分的最低得分"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/">多边形三角剖分的最低得分</a></h3><h4 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h4><p>给你一个凸 $n$ 边形，要你把它全部分成三角形，每个三角形的得分为三个顶点数字的乘积，求该图形最低总得分</p>
 <p>例子：下图的最低总得分即为13</p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/25/shape3.jpg" alt="图片"></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/25/shape3.jpg"></p>
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>这题虽然不难，但是转换还是挺巧妙的，将图形的一条边当作区间DP中的区间，边左右侧的图形又形成新的图形继续分割。选取分割点，就是给一条边已有的两个点选剩下的一个点组成三角形，再加上左右图形的得分就是选取当前分割点的总得分，那么DP使其最小即可。这里选用记忆化搜索形式来写，代码更加简单。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">minScoreTriangulation</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> v<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
