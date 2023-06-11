@@ -6,7 +6,7 @@
   <link href="http://caidd.fun/atom.xml" rel="self"/>
   
   <link href="http://caidd.fun/"/>
-  <updated>2023-04-04T07:45:01.109Z</updated>
+  <updated>2023-04-30T11:29:56.643Z</updated>
   <id>http://caidd.fun/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>neovim配置</title>
+    <link href="http://caidd.fun/neovim-pei-zhi/"/>
+    <id>http://caidd.fun/neovim-pei-zhi/</id>
+    <published>2023-04-30T09:30:58.000Z</published>
+    <updated>2023-04-30T11:29:56.643Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;安装neovim&quot;&gt;&lt;a href=&quot;#安装neovim&quot; class=&quot;headerlink&quot; title=&quot;安装neovim&quot;&gt;&lt;/a&gt;安装neovim&lt;/h2&gt;&lt;p&gt;这里有个小坑，如果直接使用apt</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="http://caidd.fun/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="http://caidd.fun/tags/linux/"/>
+    
+    <category term="vim" scheme="http://caidd.fun/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
     <title>春招总结与反思</title>
     <link href="http://caidd.fun/chun-zhao-zong-jie-yu-fan-si/"/>
     <id>http://caidd.fun/chun-zhao-zong-jie-yu-fan-si/</id>
     <published>2023-04-04T05:21:53.000Z</published>
-    <updated>2023-04-04T07:45:01.109Z</updated>
+    <updated>2023-06-11T15:49:49.685Z</updated>
     
     
       

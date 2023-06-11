@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="code-kWlHsnnCXi" />
-    <meta name="keywords" content="春招总结与反思, 算法 数据科学 人工智能 程序设计竞赛 数学建模">
-    <meta name="description" content="今年春招真的不是一般的难受，各种双9（本硕均985）大佬也是各种简历挂，一面挂，啥ACM金牌银牌大佬，本科发操作系统顶会SCI的大佬，在今年也很难找到大厂的实习，如果能找到一个基本马上就签了。
-注：写这篇博客时心情不是很好，如果冒犯了你，不">
+    <meta name="keywords" content="neovim配置, 算法 数据科学 人工智能 程序设计竞赛 数学建模">
+    <meta name="description" content="安装neovim这里有个小坑，如果直接使用apt install下载，下载的会是一个旧版的neovim，0.2的样子
+需要从 官网 下载 nvim-linux64.tar.gz，因为我这里Windows 11用的wsl2，所以可以直接下到w">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -30,7 +30,7 @@
     </style>
 
 
-    <title>春招总结与反思 | caidd的博客</title>
+    <title>neovim配置 | caidd的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -301,12 +301,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">春招总结与反思</h1>
+                    <h1 class="description center-align post-title">neovim配置</h1>
                 </div>
             </div>
         </div>
@@ -422,12 +422,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%B7%A5%E4%BD%9C/">
-                                <span class="chip bg-color">工作</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
-                            <a href="/tags/%E8%80%83%E7%A0%94/">
-                                <span class="chip bg-color">考研</span>
+                            <a href="/tags/vim/">
+                                <span class="chip bg-color">vim</span>
                             </a>
                         
                     </div>
@@ -438,8 +438,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
-                                生活
+                            <a href="/categories/linux/" class="post-category">
+                                linux
                             </a>
                         
                     </div>
@@ -451,14 +451,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-04
+                    2023-04-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-11
+                    2023-04-30
                 </div>
                 
 
@@ -490,40 +490,25 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今年春招真的不是一般的难受，各种双9（本硕均985）大佬也是各种简历挂，一面挂，啥ACM金牌银牌大佬，本科发操作系统顶会SCI的大佬，在今年也很难找到大厂的实习，如果能找到一个基本马上就签了。</p>
-<p>注：写这篇博客时心情不是很好，如果冒犯了你，不是故意的。</p>
-<p>个人感觉问题主要出在两个地方</p>
-<ul>
-<li><strong>疫情刚结束，经济还没完全恢复</strong>。各大公司岗位缩减很多，有很多人能力确实是很强的，潜力也更大，但是公司不愿意再花时间培养了，更喜欢有多段实习，项目实操能力强的。</li>
-<li><strong>学校以及实验室不会特意往一个专业技能方向培养学生，而企业需要这种人</strong>。你仔细回想下，大学的老师，辅导员往往会鼓励学生参加数学竞赛，英语竞赛，程序设计竞赛，数学建模等等，也会鼓励学生保研，考研，获取更高的学历。但我想说的是，这些在私企招人面前，全部都可以归结成“<strong>幼儿园的大红花</strong>”之流（国企的话，学历与绩点还是很有用的，认识的学历比较高，能力一般的，最后往往还是去了国企）。因为这些东西并不能真正提高你某个技能方向的实际能力。如果要就业，面对一个技能方向，这些人往往还是要重新学，而这就导致了找不到工作。这并不是理论的推测，而是我身边一个又一个鲜活的案例所表明的现实。</li>
-</ul>
-<p>那么在今年这种环境下，本科还能找到班上的有什么特征呢？</p>
-<ul>
-<li><strong>大一就选定了技术方向，并且一直搞下去</strong>。没有在提升所谓核心能力的事上花太多时间，而把很多时间花到了解决实际问题，做实际项目上。</li>
-<li><strong>计算机基础非常扎实</strong>。现在只是临时背一下所谓的八股文已经完全不够用了，如果没有结合实际项目中的深度理解，很快就会被面试官问倒。很多技术大佬就是倒在这一块。国内现在大环境就非常浮躁，一堆人搞的项目吹的牛比飞天，一问个常见的简单问题就和一啥比一样，我求求你们真的别再好高骛远了好吗？踏实一点。</li>
-<li><strong>大二就有去大厂实习过</strong>。当然，22年找实习是比23年好找的。今年简直地狱级别难度。一段大厂的实习经历，胜过无数花里胡哨的奖项。</li>
-<li><strong>擅长分析定位问题，并反思改进</strong>。找工作，项目是必不可少的。但是很多人项目其实都是半抄半写，缺乏自己的思考。这里为什么要用这个，为什么不用那个，用那个会不会更好？性能还能提升嘛？性能好是怎么体现出来的？有测试过嘛？怎么测试的？测试的方法是正确的？行业通用的测试就是对的嘛？还能改进测试方法吗？当用户数量变多，这个项目如何扩展？只有把这些问题都想明白了，都解决了，才算真正地搞成了一个项目。</li>
-<li><strong>懂得扬长避短</strong>。简历写的好这些自然不用提。他们还会引导面试官往自己擅长的地方去问。有些人真的别和一个啥比（就是我）一样了，觉得技术岗就要高冷沉默，踏实干事。就因为技术岗很多东西都很抽象，你的表达能力才更要强。东西写出来是技术强，但是面试不能清晰地给面试官表达，有什么鸟用？！</li>
-<li><strong>人脉强</strong>。这点不用说，懂得都懂，不懂的说了也不懂，这里面牵扯到的太多，有各方利益的因素。因此，我才说懂得都懂。</li>
-</ul>
-<p>为什么我不能找到大厂实习？</p>
-<p>结合上面分析的能找到班上的人的特点，我的不足有以下几点。</p>
-<ul>
-<li><strong>项目经验不足</strong>。做的项目都比较小，都是玩具型的。要么就是在别人大项目的基础上稍微改改。项目缺乏思考，没有融入自己的深入思考。大型项目的实际开发经验不足。</li>
-<li><strong>专业方向不明确</strong>。大学搞的方向太杂了，比如Unity游戏开发，Java后端，Python爬虫，前端，数据分析，直到后面才发现自己最喜欢也最擅长的还是偏底层的开发，比如C++服务器开发。而这时已经比别人晚很多了。</li>
-<li><strong>专业方向技术不够强</strong>。虽然核心能力（编程能力）还可以，但是没有意识到专业方向技术的重要性。只有专业方向的技术才能真正使你找到工作。</li>
-<li><strong>计算机基础不扎实</strong>。只是八股背得还行，然后C++ 11 ~ 17的特性比较清楚，其他的基础知识没有结合实际项目，实际API（linux操作系统API，网络编程API）去更深入地理解。</li>
-<li><strong>表达能力沟通能力不强</strong>。在面试官面前不能把自己心里想的东西很好地讲出来，语言逻辑不强。面对别人的提问，不能立刻抓住问题核心。</li>
-<li><strong>没有重视信息的重要性。</strong>在信息错综复杂的今天，有价值的信息是比金子还重要的东西。然而很多人（包括我）不愿在信息获取上花时间。为了得到某些信息，花上几十，几百，甚至几千去询问一些内部大佬是非常值得的。这些信息类似于，考研的往年题，院校内部情况，公司内部HC数量，公司内部氛围等等。而且不要只信于一人，起码得有三方一致。</li>
-</ul>
-<p>解决方案：</p>
-<ul>
-<li><strong>立刻考研</strong>。以<strong>考上</strong>为第一目标，211及以上都行，绝对不浪费过多时间在无意义的应试上。从今年来看，学历对于私企确实不算很重要，211基本所有大厂的简历关就没啥问题了（简历过不了是内部没HC，或者自己问题）。</li>
-<li><strong>考上研立刻深入学习项目开发的东西</strong>。</li>
-<li><strong>大四暑期实习，研一暑期实习，研二继续实习。</strong>大四的实习尽量找吧，反正要尽早接触企业开发环境。</li>
-<li><strong>后续还有中厂的面试就继续面</strong>。锻炼沟通表达能力。但是不继续投简历了。</li>
-</ul>
-<p>后续：实习进超聚变了，感觉还行，不考研了😄😄</p>
+                <h2 id="安装neovim"><a href="#安装neovim" class="headerlink" title="安装neovim"></a>安装neovim</h2><p>这里有个小坑，如果直接使用apt install下载，下载的会是一个旧版的neovim，0.2的样子</p>
+<p>需要从 <a target="_blank" rel="noopener" href="https://github.com/neovim/neovim/releases/tag/stable">官网</a> 下载 <a target="_blank" rel="noopener" href="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz">nvim-linux64.tar.gz</a>，因为我这里Windows 11用的wsl2，所以可以直接下到windows里，然后通过mnt文件夹把windows的文件移过来。</p>
+<p>解压缩后，在文件目录的bin目录下有个nvim的可执行文件。我选择把文件夹放到 /usr/local 里面。<br>由于wsl2与windows共用一套环境变量，因此最好是避开设置nvim的环境变量，以防冲突以及环境变量过多。</p>
+<p>我这里是这样做的，给nvim脚本的路径取了个别名，写在 .zshrc（如果不知道这个是什么的看我之前终端配置的博客） 里。</p>
+<p>我在 .zshrc 后面加上的几行取别名的命令如下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">nvim</span><span class="token operator">=</span>/usr/local/nvim/bin/nvim
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vim</span><span class="token operator">=</span>nvim
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">v</span><span class="token operator">=</span>vim<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这样我只要打 “v 文件名”，就可以直接进行编辑了，如果你觉得不太好，可以省去后面两行，然后 “nvim 文件名”</p>
+<h2 id="安装lazyvim"><a href="#安装lazyvim" class="headerlink" title="安装lazyvim"></a>安装lazyvim</h2><p>使用 <a target="_blank" rel="noopener" href="https://www.lazyvim.org/">lazyvim</a> 进行包管理，去<a target="_blank" rel="noopener" href="https://www.lazyvim.org/installation">这里</a>按照说明一步步安装即可</p>
+<p>先安装 Nerd Font，在终端里设置字体，不安装这个很多小图标用不了。主机是windows，就在windows下ttf文件装好先，记得装windows compatible的。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">ripgrep</a>，一个好用的正则搜索工具<br>安装 <a target="_blank" rel="noopener" href="https://github.com/sharkdp/fd">fd</a>，文件系统查找工具</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> ripgrep fd-find<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="安装LSP"><a href="#安装LSP" class="headerlink" title="安装LSP"></a>安装LSP</h2><p>即 <strong>Language Server Protocol</strong>，这个需要额外安装对应语言的。</p>
+<p>如果需要安装这个，还得安装一下 npm，否则Mason下载不了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nodejs <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 
                 
             </div>
@@ -550,7 +535,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://caidd.fun/chun-zhao-zong-jie-yu-fan-si/">http://caidd.fun/chun-zhao-zong-jie-yu-fan-si/</a>
+                    <a href="http://caidd.fun/neovim-pei-zhi/">http://caidd.fun/neovim-pei-zhi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -588,12 +573,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%B7%A5%E4%BD%9C/">
-                                    <span class="chip bg-color">工作</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
-                                <a href="/tags/%E8%80%83%E7%A0%94/">
-                                    <span class="chip bg-color">考研</span>
+                                <a href="/tags/vim/">
+                                    <span class="chip bg-color">vim</span>
                                 </a>
                             
                         </div>
@@ -764,7 +749,7 @@
         repo: 'caiddd.github.io',
         owner: 'caiddd',
         admin: "caiddd",
-        id: '2023-04-04T13-21-53',
+        id: '2023-04-30T17-30-58',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -794,9 +779,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/neovim-pei-zhi/">
                     <div class="card-image">
@@ -814,9 +800,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -829,6 +815,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -851,13 +838,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/li-kou-qu-ti-ji/">
+                <a href="/chun-zhao-zong-jie-yu-fan-si/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="力扣趣题集">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="春招总结与反思">
                         
-                        <span class="card-title">力扣趣题集</span>
+                        <span class="card-title">春招总结与反思</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -868,14 +855,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/" class="post-category">
-                                    程序设计竞赛
+                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
+                                    生活
                                 </a>
                             
                             
@@ -885,12 +872,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                        <span class="chip bg-color">工作</span>
                     </a>
                     
-                    <a href="/tags/%E5%8A%9B%E6%89%A3/">
-                        <span class="chip bg-color">力扣</span>
+                    <a href="/tags/%E8%80%83%E7%A0%94/">
+                        <span class="chip bg-color">考研</span>
                     </a>
                     
                 </div>
