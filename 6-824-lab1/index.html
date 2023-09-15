@@ -5,9 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="code-kWlHsnnCXi" />
-    <meta name="keywords" content="neovim配置, 算法 数据科学 人工智能 程序设计竞赛 数学建模">
-    <meta name="description" content="安装neovim这里有个小坑，如果直接使用apt install下载，下载的会是一个旧版的neovim，0.2的样子
-需要从 官网 下载 nvim-linux64.tar.gz，因为我这里Windows 11用的wsl2，所以可以直接下到w">
+    <meta name="keywords" content="6.824-lab1, 算法 数据科学 人工智能 程序设计竞赛 数学建模">
+    <meta name="description" content="实验1 是实现一个 mapreduce 框架，有几个难点：
+分布式系统的并发问题
+实现容灾（本实验规定 10s 未响应即为 crash）
+其中的并发问题，几乎全部由 go 的 channel 来解决，判断任务完成使用 atomic.Bool">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -30,7 +32,7 @@
     </style>
 
 
-    <title>neovim配置 | caidd的博客</title>
+    <title>6.824-lab1 | caidd的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -301,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">neovim配置</h1>
+                    <h1 class="description center-align post-title">6.824-lab1</h1>
                 </div>
             </div>
         </div>
@@ -422,12 +424,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
-                            </a>
-                        
-                            <a href="/tags/vim/">
-                                <span class="chip bg-color">vim</span>
+                            <a href="/tags/go/">
+                                <span class="chip bg-color">go</span>
                             </a>
                         
                     </div>
@@ -438,8 +436,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/linux/" class="post-category">
-                                linux
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                分布式系统
                             </a>
                         
                     </div>
@@ -451,14 +449,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-30
+                    2023-09-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-30
+                    2023-09-15
                 </div>
                 
 
@@ -490,24 +488,70 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="安装neovim"><a href="#安装neovim" class="headerlink" title="安装neovim"></a>安装neovim</h2><p>这里有个小坑，如果直接使用apt install下载，下载的会是一个旧版的neovim，0.2的样子</p>
-<p>需要从 <a target="_blank" rel="noopener" href="https://github.com/neovim/neovim/releases/tag/stable">官网</a> 下载 <a target="_blank" rel="noopener" href="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz">nvim-linux64.tar.gz</a>，因为我这里Windows 11用的wsl2，所以可以直接下到windows里，然后通过mnt文件夹把windows的文件移过来。</p>
-<p>解压缩后，在文件目录的bin目录下有个nvim的可执行文件。我选择把文件夹放到 /usr/local 里面。<br>由于wsl2与windows共用一套环境变量，因此最好是避开设置nvim的环境变量，以防冲突以及环境变量过多。</p>
-<p>我这里是这样做的，给nvim脚本的路径取了个别名，写在 .zshrc（如果不知道这个是什么的看我之前终端配置的博客） 里。</p>
-<p>我在 .zshrc 后面加上的几行取别名的命令如下</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">nvim</span><span class="token operator">=</span>/usr/local/nvim/bin/nvim
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vim</span><span class="token operator">=</span>nvim
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">v</span><span class="token operator">=</span>vim<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <p>实验1 是实现一个 mapreduce 框架，有几个难点：</p>
+<p>分布式系统的并发问题</p>
+<p>实现容灾（本实验规定 10s 未响应即为 crash）</p>
+<p>其中的并发问题，几乎全部由 go 的 channel 来解决，判断任务完成使用 atomic.Bool，任务分发用了一个 channel 来模拟简易的任务队列</p>
+<p>使用到的结构体</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">type</span> Task <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Num      <span class="token builtin">int</span>
+	TaskID   <span class="token builtin">int</span>
+	JobType  <span class="token builtin">int</span>
+	Filename <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
 
-<p>这样我只要打 “v 文件名”，就可以直接进行编辑了，如果你觉得不太好，可以省去后面两行，然后 “nvim 文件名”</p>
-<h2 id="安装lazyvim"><a href="#安装lazyvim" class="headerlink" title="安装lazyvim"></a>安装lazyvim</h2><p>使用 <a target="_blank" rel="noopener" href="https://www.lazyvim.org/">lazyvim</a> 进行包管理，去<a target="_blank" rel="noopener" href="https://www.lazyvim.org/installation">这里</a>按照说明一步步安装即可</p>
-<p>先安装 Nerd Font，在终端里设置字体，不安装这个很多小图标用不了。主机是windows，就在windows下ttf文件装好先，记得装windows compatible的。</p>
-<p>安装 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">ripgrep</a>，一个好用的正则搜索工具<br>安装 <a target="_blank" rel="noopener" href="https://github.com/sharkdp/fd">fd</a>，文件系统查找工具</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> ripgrep fd-find<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token keyword">type</span> Coordinator <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	MapNum    <span class="token builtin">int</span>
+	ReduceNum <span class="token builtin">int</span>
+	Finish    <span class="token keyword">chan</span> <span class="token builtin">bool</span>
+	Taskq     <span class="token keyword">chan</span> <span class="token operator">*</span>Task
+	Timeq     <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token keyword">chan</span> <span class="token builtin">bool</span>
+	Flag      atomic<span class="token punctuation">.</span>Bool
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> Request <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Questype <span class="token builtin">int</span>
+	TaskID   <span class="token builtin">int</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="安装LSP"><a href="#安装LSP" class="headerlink" title="安装LSP"></a>安装LSP</h2><p>即 <strong>Language Server Protocol</strong>，这个需要额外安装对应语言的。</p>
-<p>如果需要安装这个，还得安装一下 npm，否则Mason下载不了</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nodejs <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>worker 实现比较简单，直接轮询就行</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">Worker</span><span class="token punctuation">(</span>mapf <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>KeyValue<span class="token punctuation">,</span>
+	reducef <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+	r <span class="token operator">:=</span> Request<span class="token punctuation">{</span>Questype<span class="token punctuation">:</span> NoJob<span class="token punctuation">}</span>
+	<span class="token keyword">for</span> <span class="token punctuation">{</span>
+		t <span class="token operator">:=</span> Task<span class="token punctuation">{</span><span class="token punctuation">}</span>
+		ok <span class="token operator">:=</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token string">"Coordinator.GetTask"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>r<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span><span class="token string">"call failed!"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">switch</span> t<span class="token punctuation">.</span>JobType <span class="token punctuation">{</span>
+		<span class="token keyword">case</span> Map<span class="token punctuation">:</span>
+			<span class="token function">doMap</span><span class="token punctuation">(</span>mapf<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">)</span>
+			r<span class="token punctuation">.</span>Questype <span class="token operator">=</span> Finish
+			r<span class="token punctuation">.</span>TaskID <span class="token operator">=</span> t<span class="token punctuation">.</span>TaskID
+		<span class="token keyword">case</span> Reduce<span class="token punctuation">:</span>
+			<span class="token function">doReduce</span><span class="token punctuation">(</span>reducef<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">)</span>
+			r<span class="token punctuation">.</span>Questype <span class="token operator">=</span> Finish
+			r<span class="token punctuation">.</span>TaskID <span class="token operator">=</span> t<span class="token punctuation">.</span>TaskID
+		<span class="token keyword">case</span> Wait<span class="token punctuation">:</span>
+			time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+			r<span class="token punctuation">.</span>Questype <span class="token operator">=</span> NoJob
+		<span class="token keyword">case</span> Complete<span class="token punctuation">:</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>crash 处理用了 select 与 time.After 解决</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token punctuation">(</span>c <span class="token operator">*</span>Coordinator<span class="token punctuation">)</span> <span class="token function">wait</span><span class="token punctuation">(</span>t <span class="token operator">*</span>Task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">select</span> <span class="token punctuation">{</span>
+	<span class="token keyword">case</span> <span class="token operator">&lt;-</span>c<span class="token punctuation">.</span>Timeq<span class="token punctuation">[</span>t<span class="token punctuation">.</span>TaskID<span class="token punctuation">]</span><span class="token punctuation">:</span>
+		c<span class="token punctuation">.</span>Finish <span class="token operator">&lt;-</span> <span class="token boolean">true</span>
+	<span class="token keyword">case</span> <span class="token operator">&lt;-</span>time<span class="token punctuation">.</span><span class="token function">After</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		c<span class="token punctuation">.</span>Taskq <span class="token operator">&lt;-</span> t
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -535,7 +579,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://caidd.fun/neovim-pei-zhi/">http://caidd.fun/neovim-pei-zhi/</a>
+                    <a href="http://caidd.fun/6-824-lab1/">http://caidd.fun/6-824-lab1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -573,12 +617,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
-                                </a>
-                            
-                                <a href="/tags/vim/">
-                                    <span class="chip bg-color">vim</span>
+                                <a href="/tags/go/">
+                                    <span class="chip bg-color">go</span>
                                 </a>
                             
                         </div>
@@ -749,7 +789,7 @@
         repo: 'caiddd.github.io',
         owner: 'caiddd',
         admin: "caiddd",
-        id: '2023-04-30T17-30-58',
+        id: '2023-09-15T14-13-30',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -784,13 +824,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/neovim-pei-zhi/">
+                <a href="/6-824-lab1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="neovim配置">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="6.824-lab1">
                         
-                        <span class="card-title">neovim配置</span>
+                        <span class="card-title">6.824-lab1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -801,14 +841,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    分布式系统
                                 </a>
                             
                             
@@ -819,12 +859,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
-                    <a href="/tags/vim/">
-                        <span class="chip bg-color">vim</span>
+                    <a href="/tags/go/">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>
@@ -838,13 +874,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/chun-zhao-zong-jie-yu-fan-si/">
+                <a href="/li-kou-qu-ti-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="春招总结与反思">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="力扣趣题集">
                         
-                        <span class="card-title">春招总结与反思</span>
+                        <span class="card-title">力扣趣题集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -855,14 +891,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
-                                    生活
+                            <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/" class="post-category">
+                                    程序设计竞赛
                                 </a>
                             
                             
@@ -872,12 +908,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B7%A5%E4%BD%9C/">
-                        <span class="chip bg-color">工作</span>
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/">
+                        <span class="chip bg-color">算法题</span>
                     </a>
                     
-                    <a href="/tags/%E8%80%83%E7%A0%94/">
-                        <span class="chip bg-color">考研</span>
+                    <a href="/tags/%E5%8A%9B%E6%89%A3/">
+                        <span class="chip bg-color">力扣</span>
                     </a>
                     
                 </div>
