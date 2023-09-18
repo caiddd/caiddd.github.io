@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-09-15
+                    2023-09-18
                 </div>
                 
 
@@ -553,6 +553,7 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>需要注意用于获取 go rpc 响应参数的结构体，每次要重新起一个新的，不然已有的参数不会从远程传过来，且远程调用函数中，指针不能改变指向对象，否则远程获取的参数传不过去。感觉这里就不如 C++ 的 const 控制细粒度，不仅可以控制指向对象不变，还可以控制指针本身不变。</p>
 
                 
             </div>
